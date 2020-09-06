@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render 'shared/head' %>
+  </head>
+
+  <body data-controller='lazy-loader'>
+    <%= yield %>
+    <%= render 'shared/flash_messages' %>
+  </body>
+</html>

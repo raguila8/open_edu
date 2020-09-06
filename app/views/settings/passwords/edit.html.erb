@@ -1,0 +1,91 @@
+<div class='flex-grow py-10 bg-gray-100'>
+  <div class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-10 md:flex'>
+    <nav class='md:w-1/4 md:pr-8'>
+      <%= link_to edit_settings_accounts_path, class: "mt-1 group flex items-center px-3 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-200 transition ease-in-out duration-150" do %>
+        <svg class="flex-shrink-0 -ml-1 mr-3 h-6 w-6 text-gray-500 group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+        </svg>
+        <span class="truncate">
+          Account
+        </span>
+      <% end %>
+      <%= link_to "#", class: "mt-1 group flex items-center px-3 py-2 text-sm leading-5 font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-200 transition ease-in-out duration-150" do %>
+        <svg class="flex-shrink-0 -ml-1 mr-3 h-6 w-6 text-gray-400 group-focus:text-gray-500 transition ease-in-out duration-150" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <span class="truncate">
+          Connections
+        </span>
+      <% end %>
+      <%= link_to edit_settings_passwords_path, class: "mt-1 group flex items-center px-3 py-2 text-sm leading-5 font-medium text-gray-900 rounded-md bg-gray-200 hover:text-gray-900 focus:outline-none focus:bg-gray-300 transition ease-in-out duration-150", aria: { current: "page" } do %>
+        <svg class="flex-shrink-0 -ml-1 mr-3 h-6 w-6 text-gray-400 group-focus:text-gray-500 transition ease-in-out duration-150" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
+        </svg>
+        <span class="truncate">
+          Password
+        </span>
+      <% end %>
+    </nav>
+    <div class='mt-4 md:mt-0 md:w-3/4'>
+      <div class="mt-5 md:mt-0 md:col-span-2">
+        <div class="shadow sm:rounded-md sm:overflow-hidden">
+          <div class="px-4 py-5 bg-white sm:p-6">
+            <div class="bg-white mb-5 pb-5 border-b border-gray-200">
+              <h3 class="text-lg leading-6 font-medium text-gray-900">
+                Change your password
+              </h3>
+              <p class="mt-1 text-sm leading-5 text-gray-500">
+              Make sure you choose a secure password.
+              </p>
+            </div>
+
+            <%= form_with(model: @user, url: settings_passwords_path, html: { data: { controller: 'form'}, novalidate: true }) do |form| %>
+              
+              <div class="grid grid-cols-6 gap-6">
+                <div class="col-span-6 sm:col-span-4">
+                  <%= form.label :password, 'Your new password', class: "block text-sm font-medium leading-5 text-gray-700" %>
+                  <div class='mt-1 relative'>
+                    <%= form.password_field :password, class: "form-input rounded-md shadow-sm block w-full py-2 px-3 border border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true, minlength: 6, maxlength: 128 %>
+                    <p class="mt-2 text-sm text-gray-500">
+                      Desired password must be at least 6 characters long.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-6 gap-6 mt-6">
+                <div class="col-span-6 sm:col-span-4">
+                  <%= form.label :password_confirmation, 'Confirm your new password', class: "block text-sm font-medium leading-5 text-gray-700" %>
+                  <div class="relative mt-1">
+                    <%= form.password_field :password_confirmation, class: "form-input rounded-md shadow-sm block w-full py-2 px-3 border border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true, minlength: 6, maxlength: 128 %>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-6 gap-6 mt-6">
+                <div class="col-span-6 sm:col-span-4">
+                  <%= form.label :current_password, 'Your current password', class: "block text-sm font-medium leading-5 text-gray-700" %>
+                  <div class='mt-1 relative'>
+                    <%= form.password_field :current_password, class: "form-input rounded-md shadow-sm block w-full py-2 px-3 border border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true, minlength: 6, maxlength: 128 %>
+                    <p class="mt-2 text-sm text-gray-500">
+                      We need your current password to confirm your changes.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-8 border-t border-gray-200 pt-5 text-right">
+                <span class="inline-flex rounded-md shadow-sm">
+                  <button type="submit" class="inline-flex items-center justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                    Save
+                    <%= inline_svg_tag "icons/spinner.svg", class: "hidden animate-spin ml-3 -mr-1 h-4 w-4 text-white" %>
+                  </button>
+                </span>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

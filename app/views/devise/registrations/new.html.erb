@@ -1,0 +1,81 @@
+<div class="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <%= link_to root_path do %>
+      <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-on-white.svg" alt="Workflow">
+    <% end %>
+    <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+      Sign up to your account
+    </h2>
+    <p class="mt-2 text-center text-sm leading-5 text-gray-600 max-w">
+      Or
+      <%= link_to 'log in to your account', new_user_session_path, class: "font-medium text-indigo-600 transition ease-in-out duration-150 hover:no-underline hover:text-indigo-500 focus:underline" %>
+    </p>
+  </div>
+
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+      <%= form_with(model: resource, as: resource_name, url: registration_path(resource_name), html: { novalidate: true, data: { controller: 'form' } }, local: true) do |form| %>
+        <div>
+          <%= form.label :name, class: "block text-sm font-medium leading-5 text-gray-700" %>
+          <div class="mt-1 relative">
+            <%= form.text_field :name, class: "shadow-sm appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5", placeholder: 'John Doe', required: true, maxlength: 70 %>
+          </div>
+        </div>
+
+        <div class='mt-6'>
+          <%= form.label :email, class: "block text-sm font-medium leading-5 text-gray-700" %>
+          <div class="mt-1 relative">
+            <%= form.email_field :email, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5", placeholder: 'you@example.com', required: true, maxlength: 255 %>
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <%= form.label :password, class: "block text-sm font-medium leading-5 text-gray-700" %>
+
+          <div class="mt-1 relative">
+            <%= form.password_field :password, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true, minlength: 6, maxlength: 128 %>
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <%= form.label :password_confirmation, class: "block text-sm font-medium leading-5 text-gray-700" %>
+
+          <div class="mt-1 relative">
+            <%= form.password_field :password_confirmation, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true, minlength: 6, maxlength: 128 %>
+          </div>
+        </div>
+
+        <div class="mt-6 flex items-center justify-between">
+          <p class="mb-3 text-xs text-gray-500">
+            By registering, you agree to the <%= link_to 'privacy policy', privacy_path, target: "_blank", class: "font-medium text-indigo-600 transition ease-in-out duration-150 hover:no-underline hover:text-indigo-500 focus:underline" %> and <%= link_to 'terms of service', terms_path, target: "_blank", class: "font-medium text-indigo-600 transition ease-in-out duration-150 hover:no-underline hover:text-indigo-500 focus:underline" %>.
+          </p>
+        </div>
+
+        <div>
+          <span class="block w-full rounded-md shadow-sm">
+            <button type='submit' class="w-full flex justify-center items-center py-2 px-4 border border-transparent text-sm font-semibold rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out cursor-pointer">
+              Sign up
+              <%= inline_svg_tag "icons/spinner.svg", class: "hidden animate-spin ml-3 -mr-1 h-4 w-4 text-white" %>
+            </button>
+          </span>
+        </div>
+      <% end %>
+
+      <div class="mt-6">
+        <div class="relative">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center text-sm leading-5">
+            <span class="px-2 bg-white text-gray-500">
+              Or continue with
+            </span>
+          </div>
+        </div>
+
+        <%#= render '/shared/omniauth_buttons' %>
+
+      </div>
+    </div>
+  </div>
+</div>

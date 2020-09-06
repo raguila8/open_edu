@@ -1,0 +1,20 @@
+var contact_form = document.getElementById('new_message');
+var loader = contact_form.querySelector(".spinner");
+var form_alert = contact_form.querySelector(".form-alert");
+var send_button = contact_form.querySelector("button[data-target='loader.button']");
+
+if (form_alert) {
+  form_alert.remove();
+}
+
+<% if @response[:type] == 'error' %>
+  contact_form.insertAdjacentHTML('afterbegin', '<%= j form_alert @response[:message], @response[:type] %>')
+<% else %>
+  contact_form.insertAdjacentHTML('beforebegin', '<%= j form_alert @response[:message], @response[:type] %>')
+  contact_form.remove();
+<% end %>
+
+if (loader) {
+  send_button.disabled = false;
+  loader.remove();
+}

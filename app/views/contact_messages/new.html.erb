@@ -1,0 +1,75 @@
+<section class="w-full mx-auto bg-teal-900 flex items-center lg:py-24" style="max-width:1600px;">
+  <div class="container mx-auto">
+    <div class="flex flex-col w-full w-full justify-center items-center px-3 tracking-wide max-w-4xl mx-auto">
+      <h1 class="text-white text-5xl xl:text-6xl font-bold max-w-4xl mx-auto w-full text-center z-10">Get In Touch With Us</h1>
+      <p class='text-lg text-teal-100 py-3 max-w-xl mx-auto text-center'>
+        I'm a paragraph. Click here to add your own text and edit me. 
+	Let your users get to know you.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="bg-white md:py-16 py-10 overflow-hidden">
+  <div class="max-w-6xl mx-auto">
+    <div class='flex mx-auto w-full flex-wrap'>
+      <div class='w-full relative flex lg:w-1/2 md:w-2/5'>
+        <div class='w-full flex relative lg:p-2 md:p-3 p-4'>
+          <div class='w-full relative flex flex-wrap flex-start'>
+            <div class='w-full relative text-gray-900 font-bold leading-tight text-5xl text-left mb-6'>
+              <h2 class='max-w-sm'>Let's <span class='text-teal-900'>Capture</span> Your Moments</h2>
+	    </div>
+	    <div class='flex w-full mt-6 mb-3'>
+              <div class='text-teal-900 hover:text-gray-900' data-aos="fade-up" data-aos-duration='1000' data-aos-easing="ease-in-out">
+                <%= inline_svg_tag "email.svg", class: 'mr-5 fill-current transition-all ease-in-out duration-300', width: 30, height: 30 %>
+              </div>
+              <div>
+                <h6 class='text-gray-900 mb-1 text-lg font-semibold' data-aos="fade-up" data-aos-duration='1000' data-aos-easing="ease-in-out">
+                  Email
+                </h6>
+                <p class='text-base text-gray-700' data-aos="fade-up" data-aos-duration='1000' data-aos-easing="ease-in-out">
+                  <%= link_to "foobar@email.com", "mailto:foobar@email.com", target: "_blank" %>
+                </p>
+              </div>
+            </div>
+            <div class='flex w-full mb-6 mt-3'>
+              <div class='text-teal-900 hover:text-gray-900' data-aos="fade-up" data-aos-duration='1000' data-aos-easing="ease-in-out">
+                <%= inline_svg_tag "call.svg", class: 'mr-5 fill-current transition-all ease-in-out duration-300', width: 30, height: 30 %>
+              </div>
+              <div>
+                <h6 class='text-gray-900 mb-1 text-lg font-semibold' data-aos="fade-up" data-aos-duration='1000' data-aos-easing="ease-in-out">
+                  Call
+                </h6>
+                <p class='text-base text-gray-700' data-aos="fade-up" data-aos-duration='1000' data-aos-easing="ease-in-out">
+                  (123) 456-7890
+                </p>
+              </div>
+            </div>
+	    <div class='w-full relative text-left my-6'>
+              <div>
+                <%= link_to '#', class: 'relative rounded-full p-4 text-teal-900 bg-teal-100 inline-block transition-all duration-300 ease-in-out w-6 h-6 hover:text-teal-100 hover:bg-teal-900 box-content mr-4' do %>
+                  <%= inline_svg_tag 'instagram_icon.svg', class: 'absolute block fill-current top-4 left-4 w-6 h-6' %>
+		<% end %>
+		<%= link_to '#', class: 'relative rounded-full p-4 text-teal-900 bg-teal-100 inline-block transition-all duration-300 ease-in-out w-6 h-6 hover:text-teal-100 hover:bg-teal-900 box-content mr-4' do %>
+                  <%= inline_svg_tag 'facebook_icon.svg', class: 'absolute block fill-current top-4 left-4 w-6 h-6' %>
+		<% end %>
+                <%= link_to '#', class: 'relative rounded-full p-4 text-teal-900 bg-teal-100 inline-block transition-all duration-300 ease-in-out w-6 h-6 hover:text-teal-100 hover:bg-teal-900 box-content' do %>
+                  <%= inline_svg_tag 'twitter_icon.svg', class: 'absolute block fill-current top-4 left-4 w-6 h-6' %>
+		<% end %>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      </div>
+      <div class='w-full relative flex lg:w-1/2 md:w-3/5'>
+        <div class='w-full flex relative lg:p-2 md:p-3 p-4'>
+          <div class='w-full relative flex flex-wrap flex-start'>
+            <div class='w-full relative my-6'>
+              <%= render 'contact_messages/form' %>
+	    </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
