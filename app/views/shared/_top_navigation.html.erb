@@ -1,10 +1,10 @@
-<div class="relative z-10 flex-shrink-0 flex h-16 bg-white shadow">
+<div class="relative z-10 flex-shrink-0 flex h-16 bg-white <%= top_navigation_classes %>">
   <button class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:bg-gray-100 focus:text-gray-600 md:hidden" aria-label="Open sidebar" data-controller='toggle' data-toggle-remote='#sidebar' data-action="click->toggle#toggleRemote">
     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
     </svg>
   </button>
-  <div class="flex-1 px-4 flex justify-between">
+  <div class="flex-1 px-4 flex justify-between sm:px-6 lg:max-w-6xl lg:mx-auto lg:px-8">
     <div class="flex-1 flex">
       <form class="w-full flex md:ml-0" action="#" method="GET">
         <label for="search_field" class="sr-only">Search</label>
@@ -20,7 +20,120 @@
     </div>
     <div class="ml-4 flex items-center md:ml-6">
       <% if user_signed_in? %>
-      <button class="p-1 text-gray-400 rounded-full hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:shadow-outline focus:text-gray-500" aria-label="Notifications">
+      <div class="sm:mr-3 relative" data-controller='toggle' data-action="click@window->toggle#clickAway">
+        <button class="p-1 text-gray-400 rounded-full hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:shadow-outline focus:text-gray-500" aria-label="Create" title='Create' aria-haspopup="true" data-action="click->toggle#toggle">
+          <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+        </button>
+  
+        <!--
+          Flyout menu, show/hide based on flyout menu state.
+      
+          Entering: "transition ease-out duration-200"
+            From: "opacity-0 translate-y-1"
+            To: "opacity-100 translate-y-0"
+          Leaving: "transition ease-in duration-150"
+            From: "opacity-100 translate-y-0"
+            To: "opacity-0 translate-y-1"
+        -->
+        <div class="absolute right-1/2 translate-x-12 sm:translate-x-1/5 transform mt-3 px-2 sm:w-screen w-64 max-w-md sm:px-0 hidden" data-target="toggle.toggleable toggle.toggleArea"
+          x-transition:enter="transition ease-out duration-200"
+					x-transition:enter-start="opacity-0 translate-y-1"
+					x-transition:enter-end="opacity-100 translate-y-0"
+					x-transition:leave="transition ease-in duration-150"
+					x-transition:leave-start="opacity-100 translate-y-0"
+					x-transition:leave-end="opacity-0 translate-y-1">
+          <div class="rounded-lg shadow-lg">
+            <div class="rounded-lg shadow-xs overflow-hidden">
+              <div class="z-20 relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+                <a href="#" class="-m-3 p-3 flex items-start space-x-4 rounded-lg hover:bg-gray-50 transition ease-in-out duration-150">
+                  <svg class="flex-shrink-0 h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                  </svg>
+                  <div class="space-y-1">
+                    <p class="text-base leading-6 font-medium text-gray-900">
+                      Track
+                    </p>
+                    <p class="text-sm leading-5 text-gray-500">
+                      Create a learning track to help others maximize their learning.
+                    </p>
+                  </div>
+                </a>
+                <a href="#" class="-m-3 p-3 flex items-start space-x-4 rounded-lg hover:bg-gray-50 transition ease-in-out duration-150">
+                  <svg class="flex-shrink-0 h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z" />
+                    <path fill="#fff" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                  </svg>
+                  <div class="space-y-1">
+                    <p class="text-base leading-6 font-medium text-gray-900">
+                      Course
+                    </p>
+                    <p class="text-sm leading-5 text-gray-500">
+                      Add a course and share it with other learners.
+                    </p>
+                  </div>
+                </a>
+                <%= link_to new_book_path, class: "-m-3 p-3 flex items-start space-x-4 rounded-lg hover:bg-gray-50 transition ease-in-out duration-150" do %>
+                  <svg class="flex-shrink-0 h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                  <div class="space-y-1">
+                    <p class="text-base leading-6 font-medium text-gray-900">
+                      Book
+                    </p>
+                    <p class="text-sm leading-5 text-gray-500">
+                      Add a book and share it with other learners.
+                    </p>
+                  </div>
+                <% end %>
+                <a href="#" class="-m-3 p-3 flex items-start space-x-4 rounded-lg hover:bg-gray-50 transition ease-in-out duration-150">
+                  <svg class="flex-shrink-0 h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                  <div class="space-y-1">
+                    <p class="text-base leading-6 font-medium text-gray-900">
+                      Video
+                    </p>
+                    <p class="text-sm leading-5 text-gray-500">
+                      Add an educational  Youtube or Vimeo video.
+                    </p>
+                  </div>
+                </a>
+                <a href="#" class="-m-3 p-3 flex items-start space-x-4 rounded-lg hover:bg-gray-50 transition ease-in-out duration-150">
+                  <svg class="flex-shrink-0 h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <div class="space-y-1">
+                    <p class="text-base leading-6 font-medium text-gray-900">
+                      Article
+                    </p>
+                    <p class="text-sm leading-5 text-gray-500">
+                      Share an educational article with other learners.
+                    </p>
+                  </div>
+                </a>
+                <a href="#" class="-m-3 p-3 flex items-start space-x-4 rounded-lg hover:bg-gray-50 transition ease-in-out duration-150">
+                  <svg class="flex-shrink-0 h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                  </svg>
+                  <div class="space-y-1">
+                    <p class="text-base leading-6 font-medium text-gray-900">
+                      Audio
+                    </p>
+                    <p class="text-sm leading-5 text-gray-500">
+                      Share educational audio clips or podcasts with other learners.
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <button class="hidden sm:block p-1 text-gray-400 rounded-full hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:shadow-outline focus:text-gray-500" aria-label="Notifications" title='Notifications'>
         <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
         </svg>
@@ -29,11 +142,15 @@
       <!-- Profile dropdown -->
       <div class="ml-3 relative" data-controller='toggle' data-action="click@window->toggle#clickAway">
         <div>
-          <button class="max-w-xs flex items-center text-sm rounded-full focus:outline-none focus:shadow-outline" id="user-menu" aria-label="User menu" aria-haspopup="true" data-action="click->toggle#toggle">
-            <div class='h-8 w-8 rounded-full bg-gray-400 animate-pulse'>
-              <img data-target='lazy-loader.entry' data-image-src='<%=avatar_path(current_user)%>' class="opacity-0 transition ease-in duration-150 h-full w-full rounded-full" alt='Avatar'>
-            </div>
-          </button>
+          <button class="max-w-xs flex items-center text-sm rounded-full focus:outline-none focus:bg-cool-gray-100 lg:p-2 lg:rounded-md lg:hover:bg-cool-gray-100" id="user-menu" aria-label="User menu" aria-haspopup="true" data-action="click->toggle#toggle" title='Account'>
+						<div class='h-8 w-8 rounded-full bg-gray-400 animate-pulse'>
+              <img data-target='lazy-loader.entry' data-image-src='<%=avatar_path(current_user)%>' class="opacity-0 transition ease-in duration-150 h-full w-full rounded-full" alt="<%=current_user.name %>">
+						</div>
+            <p class="hidden ml-3 text-cool-gray-700 text-sm leading-5 font-medium lg:block"><%= current_user.name %></p>
+						<svg class="hidden flex-shrink-0 ml-1 h-5 w-5 text-cool-gray-400 lg:block" viewBox="0 0 20 20" fill="currentColor">
+							<path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+						</svg>
+					</button>
         </div>
         <!--
           Profile dropdown panel, show/hide based on dropdown state.
@@ -60,6 +177,7 @@
         </div>
       </div>
       <% else %>
+      <%= link_to "Sign in", new_user_session_path, class: "hidden sm:block mr-8 whitespace-no-wrap text-base leading-6 font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900" %>
       <span class="inline-flex rounded-md shadow-sm">
         <%= link_to "Sign up", new_user_registration_path, class: "whitespace-no-wrap inline-flex items-center justify-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150" %>
       </span>

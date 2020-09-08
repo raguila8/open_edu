@@ -17,8 +17,8 @@ module.exports = {
 
   },
   variants: {},
-experimental: { 
-  applyComplexClasses: true, 
-},
+  experimental: { 
+    applyComplexClasses: true, 
+  },
   plugins: [require('@tailwindcss/ui'), require('@tailwindcss/typography')],
 }

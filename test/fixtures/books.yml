@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  source_url: MyString
+  publication_year: 1
+  publication_month: 1
+  publication_day: 1
+  publisher: MyString
+  overview: MyText
+  description: MyText
+  num_pages: 1
+  level: 1
+
+two:
+  title: MyString
+  source_url: MyString
+  publication_year: 1
+  publication_month: 1
+  publication_day: 1
+  publisher: MyString
+  overview: MyText
+  description: MyText
+  num_pages: 1
+  level: 1

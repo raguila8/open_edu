@@ -37,4 +37,8 @@ module ApplicationHelper
       "#{base_url}/00000000000000000000000000000000#{base_url_params}"
     end
   end
+
+  def top_navigation_classes
+    current_page?(new_book_path)? 'border-b border-gray-200 md:border-none' : 'shadow'
+  end
 end

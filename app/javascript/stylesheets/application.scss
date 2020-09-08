@@ -3,3 +3,42 @@
 @import 'tailwindcss/utilities';
 
 @import 'components/forms';
+
+nav.vertical.bg-white {
+  a.active {
+    @apply text-gray-900 bg-gray-100 hover:bg-gray-100 focus:bg-gray-200 hover:text-gray-900;
+
+    svg {
+      @apply text-gray-500;
+    }
+  }
+
+  a.active:hover svg {
+    @apply text-gray-500;
+  }
+
+  a.active:focus svg {
+    @apply text-gray-600;
+  }
+}
+
+nav.vertical.bg-white {
+  a:not(.active) {
+    @apply text-gray-600 hover:bg-gray-50 focus:text-gray-900 focus:bg-gray-50 hover:text-gray-900;
+  
+    svg {
+      @apply text-gray-400;
+    }
+  }
+
+  a:not(.active):hover svg {
+    @apply text-gray-500;
+  }
+
+  a:not(.active):focus svg {
+    @apply text-gray-500;
+  }
+}
+
+
+
