@@ -41,4 +41,8 @@ module ApplicationHelper
   def top_navigation_classes
     current_page?(new_book_path)? 'border-b border-gray-200 md:border-none' : 'shadow'
   end
+
+  def page_container_classes
+    current_page?(new_book_path)? 'overflow-auto focus:outline-none' : 'flex flex-col w-0 overflow-hidden'
+  end
 end

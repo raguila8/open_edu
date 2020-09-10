@@ -2,15 +2,17 @@ class Book < ApplicationRecord
   has_one_attached :image
   has_rich_text :overview
   has_rich_text :description
+  has_drafts
 
   validates :title, presence: true
-  validates :source_url, presence: true, unique: true, format: URI::regexp(%w[http https])
+  validates :source_url, presence: true, uniqueness: true, format: URI::regexp(%w[http https])
   validates :publication_year, numericality: { only_integer: true  }, allow_blank: true
-  validates :publication_year, presence: true, unless: publication_month.blank?
+  validates :publication_year, presence: true, if: :publication_month?
   validates :publication_month, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 12 }, allow_blank: true
-  validates proper_publication_day
-  enum :level, { introductory: 0, intermediate: 1, advanced: 2 }
-  enum :status, { draft: 0, published: 1 }
+  validate :proper_publication_day
+
+  enum level: [:introductory, :intermediate, :advanced ]
+  enum status: [:draft, :published ]
 
   private
 

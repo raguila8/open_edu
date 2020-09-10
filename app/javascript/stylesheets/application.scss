@@ -3,6 +3,7 @@
 @import 'tailwindcss/utilities';
 
 @import 'components/forms';
+@import 'components/effects';
 
 nav.vertical.bg-white {
   a.active {
@@ -41,4 +42,20 @@ nav.vertical.bg-white {
 }
 
 
+/* Sticky */
 
+.sticky {
+  @apply fixed top-0 left-0 md:left-64;
+}
+
+.sticky > div > div {
+  border-top: none;
+}
+
+.scrollbar-measure {
+	width: 100px;
+	height: 100px;
+	overflow: scroll;
+	position: absolute;
+	top: -9999px;
+}

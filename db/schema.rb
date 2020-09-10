@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_07_210404) do
+ActiveRecord::Schema.define(version: 2020_09_08_214448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -50,6 +60,19 @@ ActiveRecord::Schema.define(version: 2020_09_07_210404) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["source_url"], name: "index_books_on_source_url", unique: true
     t.index ["title"], name: "index_books_on_title"
+  end
+
+  create_table "drafts", id: :serial, force: :cascade do |t|
+    t.string "target_type", null: false
+    t.integer "user_id"
+    t.string "parent_type"
+    t.integer "parent_id"
+    t.binary "data", null: false
+    t.datetime "updated_at", null: false
+    t.string "user_type"
+    t.index ["parent_type", "parent_id"], name: "index_drafts_on_parent_type_and_parent_id"
+    t.index ["user_id", "target_type"], name: "index_drafts_on_user_id_and_target_type"
+    t.index ["user_id"], name: "index_drafts_on_user_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|

@@ -17,3 +17,5 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 require('stylesheets/application.scss')
 import 'controllers'
+require("trix")
+require("@rails/actiontext")
