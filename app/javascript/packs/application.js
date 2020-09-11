@@ -17,5 +17,11 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 require('stylesheets/application.scss')
 import 'controllers'
-require("trix")
+
+var Trix = require('trix');
+Trix.config.toolbar.getDefaultHTML = function() {
+  let toolbar = require('templates/minimal_trix_toolbar.hbs');
+  return toolbar();
+};
+
 require("@rails/actiontext")
