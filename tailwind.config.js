@@ -9,6 +9,7 @@ module.exports = {
       './app/**/*.js',
       './app/**/*.js.erb',
       './app/**/*.scss',
+      './app/**/*.hbs',
     ],
   },
 

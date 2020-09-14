@@ -9,63 +9,61 @@
           </p>
         </div>
         <div class="mt-5 md:mt-0 md:col-span-2">
-          <form action="#" method="POST">
-            <div class='grid grid-cols-3 gap-6'>
-              <div class="col-span-3 sm:col-span-2">
-                <%= form.label :title, class: "block text-sm font-medium leading-5 text-gray-700" %>
-                <div class='mt-1 relative'>
-                  <%= form.text_field :title,
-                                      class: "form-input rounded-md shadow-sm block w-full py-2 px-3 border border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5",
-                                      required: true, maxlength: 255, placeholder: 'Introduction to Alchemy' %>
-                  <p class="mt-2 text-sm text-gray-500">
-                    What's the title of the book?
-                  </p>
-                </div>
-              </div>
-
-              <div class="col-span-3 sm:col-span-2">
-                <%= form.label :source_url, "Book Link", class: "block text-sm font-medium leading-5 text-gray-700" %>
-                <div class='mt-1 relative'>
-                  <%= form.url_field :source_url,
-                                      class: "form-input rounded-md shadow-sm block w-full py-2 px-3 border border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5",
-                                      required: true, placeholder: 'www.example.com' %>
-                  <p class="mt-2 text-sm text-gray-500">
-                    Where can users find the book?
-                  </p>
-                </div>
+          <div class='grid grid-cols-3 gap-6'>
+            <div class="col-span-3 sm:col-span-2">
+              <%= form.label :title, class: "block text-sm font-medium leading-5 text-gray-700" %>
+              <div class='mt-1 relative'>
+                <%= form.text_field :title,
+                                    class: "form-input rounded-md shadow-sm block w-full py-2 px-3 border border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                                    required: true, maxlength: 255, placeholder: 'Introduction to Alchemy' %>
+                <p class="mt-2 text-sm text-gray-500">
+                  What's the title of the book?
+                </p>
               </div>
             </div>
 
-            <div class="mt-6">
-              <label class="block text-sm leading-5 font-medium text-gray-700">
-                Photo
-              </label>
-              <div class="mt-2 flex items-center">
-                <span class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
-                  <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                </span>
-                <span class="ml-5 rounded-md shadow-sm">
-                  <button type="button" class="py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
-                    Change
-                  </button>
-                </span>
+            <div class="col-span-3 sm:col-span-2">
+              <%= form.label :source_url, "Book Link", class: "block text-sm font-medium leading-5 text-gray-700" %>
+              <div class='mt-1 relative'>
+                <%= form.url_field :source_url,
+                                    class: "form-input rounded-md shadow-sm block w-full py-2 px-3 border border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                                    required: true, placeholder: 'www.example.com' %>
+                <p class="mt-2 text-sm text-gray-500">
+                  Where can users find the book?
+                </p>
               </div>
             </div>
+          </div>
 
-            <div class="mt-6">
-              <label for="about" class="block text-sm leading-5 font-medium text-gray-700">
-                Overview
-              </label>
-              <div class="rounded-md shadow-sm mt-1">
-                <%= form.rich_text_area(:overview, class: "form-textarea h-48 block rounded-t-none w-full transition duration-150 ease-in-out focus:outline-none min-h-48 sm:text-sm sm:leading-5") %>
-              </div>
-              <p class="mt-2 text-sm text-gray-500">
-                Brief description for your profile. URLs are hyperlinked.
-              </p>
+          <div class="mt-6">
+            <label class="block text-sm leading-5 font-medium text-gray-700">
+              Photo
+            </label>
+            <div class="mt-2 flex items-center">
+              <span class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
+                <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              </span>
+              <span class="ml-5 rounded-md shadow-sm">
+                <button type="button" class="py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
+                  Change
+                </button>
+              </span>
             </div>
-          </form>
+          </div>
+
+          <div class="mt-6">
+            <label for="about" class="block text-sm leading-5 font-medium text-gray-700">
+              Overview
+            </label>
+            <div class="rounded-md shadow-sm mt-1">
+              <%= form.rich_text_area(:overview, class: "form-textarea h-48 block rounded-t-none w-full transition duration-150 ease-in-out focus:outline-none min-h-48 sm:text-sm sm:leading-5") %>
+            </div>
+            <p class="mt-2 text-sm text-gray-500">
+              Brief description for your profile. URLs are hyperlinked.
+            </p>
+          </div> 
         </div>
       </div>
     </div>
@@ -73,59 +71,27 @@
     <div class="mt-6 bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
       <div class="md:grid md:grid-cols-3 md:gap-6">
         <div class="md:col-span-1">
-          <h3 class="text-lg font-medium leading-6 text-gray-900">Personal Information</h3>
+          <h3 class="text-lg font-medium leading-6 text-gray-900">Publication details</h3>
           <p class="mt-1 text-sm leading-5 text-gray-500">
-            Use a permanent address where you can receive mail.
+            Provide the authors or organization that wrote the book along 
+            with the publication details if any.
           </p>
         </div>
         <div class="mt-5 md:mt-0 md:col-span-2">
-          <form action="#" method="POST">
+          
             <div class="grid grid-cols-6 gap-6">
               <div class="col-span-6 sm:col-span-3">
-                <label for="first_name" class="block text-sm font-medium leading-5 text-gray-700">First name</label>
-                <input id="first_name" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-              </div>
-    
-              <div class="col-span-6 sm:col-span-3">
-                <label for="last_name" class="block text-sm font-medium leading-5 text-gray-700">Last name</label>
-                <input id="last_name" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-              </div>
-    
-              <div class="col-span-6 sm:col-span-4">
-                <label for="email_address" class="block text-sm font-medium leading-5 text-gray-700">Email address</label>
-                <input id="email_address" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-              </div>
-    
-              <div class="col-span-6 sm:col-span-3">
-                <label for="country" class="block text-sm font-medium leading-5 text-gray-700">Country / Region</label>
-                <select id="country" class="mt-1 block form-select w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                  <option>United States</option>
-                  <option>Canada</option>
-                  <option>Mexico</option>
-                </select>
-              </div>
-    
-              <div class="col-span-6">
-                <label for="street_address" class="block text-sm font-medium leading-5 text-gray-700">Street address</label>
-                <input id="street_address" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-              </div>
-    
-              <div class="col-span-6 sm:col-span-6 lg:col-span-2">
-                <label for="city" class="block text-sm font-medium leading-5 text-gray-700">City</label>
-                <input id="city" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-              </div>
-    
-              <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                <label for="state" class="block text-sm font-medium leading-5 text-gray-700">State / Province</label>
-                <input id="state" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-              </div>
-    
-              <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                <label for="postal_code" class="block text-sm font-medium leading-5 text-gray-700">ZIP / Postal</label>
-                <input id="postal_code" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                <div data-controller='choices'>
+                  <label for="authors" class="block text-sm font-medium leading-5 text-gray-700">Authors</label>
+                  <input name='basic' value='tag1, tag2 autofocus'>
+                  <p class="mt-2 text-sm text-gray-500">
+                    Search for authors by name. You can add multiple authors 
+                    if the book has more than one author.
+                  </p>
+                </div>
               </div>
             </div>
-          </form>
+          
         </div>
       </div>
     </div>
@@ -139,7 +105,7 @@
           </p>
         </div>
         <div class="mt-5 md:mt-0 md:col-span-2">
-          <form action="#" method="POST">
+          
             <fieldset>
               <legend class="text-base leading-6 font-medium text-gray-900">By Email</legend>
               <div class="mt-4">
@@ -200,7 +166,7 @@
                 </div>
               </div>
             </fieldset>
-          </form>
+          
         </div>
       </div>
     </div>
