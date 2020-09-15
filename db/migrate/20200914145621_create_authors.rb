@@ -4,7 +4,7 @@ class CreateAuthors < ActiveRecord::Migration[6.0]
       t.string :name, null: false
       t.text :about
       t.string :twitter_username
-      t.text :website
+      t.text :website_url
 
       t.timestamps
     end

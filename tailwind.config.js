@@ -18,7 +18,13 @@ module.exports = {
       fontFamily: {
         sans: ['Inter var', 'system-ui', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Roboto', "Helvetica Neue", 'Arial', "Noto Sans", 'sans-serif', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"]
       },
-    }, 
+    },
+
+    minWidth: {
+      '0': '0',
+      'full': '100%',
+      '24': '6rem',
+    }
   },
   variants: {},
   experimental: { 

@@ -61,3 +61,6 @@ gem 'mini_magick', '~> 4.10', '>= 4.10.1'
 gem 'image_processing', '~> 1.2'
 gem 'turbolinks_render'
 gem 'drafting'
+
+# Search
+gem 'textacular', '~> 5.0'

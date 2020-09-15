@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2020_09_14_145621) do
     t.string "name", null: false
     t.text "about"
     t.string "twitter_username"
-    t.text "website"
+    t.text "website_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["name"], name: "index_authors_on_name"
