@@ -1,9 +1,9 @@
 .tagify {
-  @apply mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm cursor-text transition duration-150 ease-in-out sm:text-sm sm:leading-5;
+  @apply mt-1 form-input flex items-center flex-wrap space-x-1 space-y-1 w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm cursor-text transition duration-150 ease-in-out sm:text-sm sm:leading-5;
 }
 
 .tagify__input {
-  @apply flex-grow inline-block px-2 py-1 relative whitespace-pre-wrap leading-5 min-w-24 focus:outline-none opacity-100;
+  @apply flex-grow inline-block px-2 py-0.5 relative whitespace-pre-wrap leading-5 min-w-24 focus:outline-none opacity-100;
 }
 
 .tagify__input:empty::before {
@@ -16,7 +16,22 @@
   @apply absolute pointer-events-none my-auto mx-0 text-gray-400 opacity-0 whitespace-no-wrap text-base leading-6 sm:text-sm sm:leading-5;
 }
 
-  
+.tagify__dropdown {
+  @apply absolute z-50 overflow-hidden transform translate-y-2 shadow-lg bg-white rounded-md;
+}
+
+.tagify__dropdown__wrapper {
+  @apply leading-6 shadow-xs overflow-auto max-h-56 rounded-md text-base py-1 sm:text-sm sm:leading-5;
+}
+
+.tagify__dropdown__item--active {
+  @apply text-white bg-indigo-600;
+
+  span {
+    @apply font-semibold;
+  }
+}
+
 .tagify + input {
   @apply hidden;
 }

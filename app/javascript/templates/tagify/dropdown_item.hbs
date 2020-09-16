@@ -1,0 +1,16 @@
+<!--
+	Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
+
+	Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
+-->
+<div {{{ attributes }}} role="option" class="{{ tagify.settings.classNames.dropdownItem }} text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9" data-controller='lazy-loader'>
+	<div class="flex items-center space-x-3">
+    <div class='flex-shrink h-6 w-6 rounded-full bg-gray-400 animate-pulse'>
+		  <img data-target='lazy-loader.entry' data-image-src="{{ item.avatar }}" alt="" class="opacity-0 transition ease-in duration-150 h-full w-full rounded-full">
+		</div>
+    <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
+		<span class="font-normal block truncate">
+			{{ item.name }}
+		</span>
+	</div>	
+</div>
