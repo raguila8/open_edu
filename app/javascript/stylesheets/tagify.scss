@@ -17,11 +17,11 @@
 }
 
 .tagify__dropdown {
-  @apply absolute z-50 overflow-hidden transform translate-y-2 shadow-lg bg-white rounded-md;
+  @apply absolute w-full z-50 overflow-hidden transform translate-y-2 shadow-lg bg-white rounded-md;
 }
 
 .tagify__dropdown__wrapper {
-  @apply leading-6 shadow-xs overflow-auto max-h-56 rounded-md text-base py-1 sm:text-sm sm:leading-5;
+  @apply leading-6 shadow-xs overflow-auto max-h-56 rounded-t-md text-base py-1 sm:text-sm sm:leading-5;
 }
 
 .tagify__dropdown__item--active {
