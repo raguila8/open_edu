@@ -71,7 +71,7 @@ export default class extends Controller {
   }
 
   shouldValidateField (field) {
-    return !field.disabled && !['file', 'reset', 'submit', 'button'].includes(field.type)
+    return !field.disabled && !['file', 'reset', 'submit', 'button'].includes(field.type) && !field.hasAttribute('data-novalidate') && !field.hasAttribute('contenteditable')
   } 
   
   showError(field, msg=field.validationMessage) {

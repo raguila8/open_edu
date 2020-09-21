@@ -4,6 +4,10 @@ import { transitionIn, transitionOut  } from '../src/bare_transitions'
 export default class extends Controller {
   static targets = ['toggleable', 'toggleArea']
 
+  connect() {
+    this.data.set('expanded', false)
+  }
+
   toggle(event) {
     event.stopPropagation()
 
@@ -14,6 +18,8 @@ export default class extends Controller {
         transitionOut(target, () => target.classList.add('hidden'))
       }
     })
+
+    this.toggleExpandedAttribute()
   }
 
   clickAway(event) {
@@ -25,6 +31,8 @@ export default class extends Controller {
 			    transitionOut(target, () => target.classList.add('hidden'))
         }
       })
+
+      this.data.set('expanded', false)
     }
   }
 
@@ -38,6 +46,8 @@ export default class extends Controller {
         transitionIn(target, () => target.classList.remove('hidden'))
       }
     })
+
+    this.data.set('expanded', true)
   }
 
   hide(event) {
@@ -49,6 +59,8 @@ export default class extends Controller {
 			  transitionOut(target, () => target.classList.add('hidden'))
       }
     })
+
+    this.data.set('expanded', false)
   }
 
   toggleRemote(event) {
@@ -65,6 +77,14 @@ export default class extends Controller {
   hideWithKeyboard(event) {
     if (event.keyCode === 27) {
       this.hide()
+    }
+  }
+
+  toggleExpandedAttribute() {
+    if (this.data.get('expanded') == 'true') {
+      this.data.set('expanded', false)
+    } else {
+      this.data.set('expanded', true)
     }
   }
 }

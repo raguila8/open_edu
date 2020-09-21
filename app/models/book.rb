@@ -4,12 +4,19 @@ class Book < ApplicationRecord
   has_rich_text :description
   has_drafts
 
-  validates :title, presence: true
-  validates :source_url, presence: true, uniqueness: true, format: URI::regexp(%w[http https])
-  validates :publication_year, numericality: { only_integer: true  }, allow_blank: true
+  has_many :resources_tags, as: :resource, dependent: :destroy
+  has_many :tags, through: :resources_tags
+
+  validates :title, presence: true, length: { maximum: 255 }
+  validates :subtitle, length: { maximum: 255 }
+  validates :source_url, presence: true, uniqueness: true, format: URI::regexp(%w[http https]), length: { maximum: 2048 }
+  validates :publisher, length: { maximum: 255 }
+
+  validates :publication_year, numericality: { only_integer: true, less_than_or_equal_to: Date.today.year,  greater_than_or_equal_to: -2100 }, allow_blank: true
   validates :publication_year, presence: true, if: :publication_month?
   validates :publication_month, numericality: { only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 12 }, allow_blank: true
   validate :proper_publication_day
+  validates :num_pages, numericality: { only_integer: true,  greater_than_or_equal_to: 0 }, allow_blank: true
 
   enum level: [:introductory, :intermediate, :advanced ]
   enum status: [:draft, :published ]

@@ -23,11 +23,23 @@
             </div>
 
             <div class="col-span-3 sm:col-span-2">
+              <%= form.label :subtitle, class: "block text-sm font-medium leading-5 text-gray-700" %>
+              <div class='mt-1 relative'>
+                <%= form.text_field :subtitle,
+                                    class: "form-input rounded-md shadow-sm block w-full py-2 px-3 border border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                                    maxlength: 255, placeholder: 'How to turn plastic into gold' %>
+                <p class="mt-2 text-sm text-gray-500">
+                  Add subtitle if any.
+                </p>
+              </div>
+            </div>
+
+            <div class="col-span-3 sm:col-span-2">
               <%= form.label :source_url, "Book Link", class: "block text-sm font-medium leading-5 text-gray-700" %>
               <div class='mt-1 relative'>
                 <%= form.url_field :source_url,
                                     class: "form-input rounded-md shadow-sm block w-full py-2 px-3 border border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5",
-                                    required: true, placeholder: 'www.example.com' %>
+                                    required: true, maxlength: 2048, placeholder: 'http://www.example.com' %>
                 <p class="mt-2 text-sm text-gray-500">
                   Where can users find the book?
                 </p>
@@ -61,7 +73,7 @@
               <%= form.rich_text_area(:overview, class: "form-textarea h-48 block rounded-t-none w-full transition duration-150 ease-in-out focus:outline-none min-h-48 sm:text-sm sm:leading-5") %>
             </div>
             <p class="mt-2 text-sm text-gray-500">
-              Brief description for your profile. URLs are hyperlinked.
+              Give a brief overview of the book.
             </p>
           </div> 
         </div>
@@ -74,24 +86,46 @@
           <h3 class="text-lg font-medium leading-6 text-gray-900">Publication details</h3>
           <p class="mt-1 text-sm leading-5 text-gray-500">
             Provide the authors or organization that wrote the book along 
-            with the publication details if any.
+            with publication details if any.
           </p>
         </div>
         <div class="mt-5 md:mt-0 md:col-span-2">
-          
-            <div class="grid grid-cols-6 gap-6">
-              <div class="col-span-6">
-                <label for="authors" class="block text-sm font-medium leading-5 text-gray-700">Authors</label>
-                <div class='relative w-full max-w-lg' data-controller='selector' data-selector-endpoint='/authors.json'>
-                  <input name='basic' placeholder='J.K. Rowling' data-target='selector.input'>
-                </div>
-                <p class="mt-2 max-w-sm text-sm text-gray-500">
-                  Search for authors by name. You can add multiple authors 
-                  if the book has more than one author.
-                </p> 
+          <div class="grid grid-cols-6 gap-6">
+            <div class="col-span-6">
+              <label for="authors" class="block text-sm font-medium leading-5 text-gray-700">Authors</label>
+              <div class='relative w-full max-w-lg' data-controller='tagify' data-tagify-endpoint='/authors.json'>
+                <input name='basic' placeholder='J.K. Rowling' data-target='tagify.input' data-novalidate=true>
               </div>
+              <p class="mt-2 max-w-lg text-md text-gray-500">
+                Search for authors by name. Make sure to include all authors
+                if the book has multiple authors. If the book was published by a group or organization, list the organization's name as the author.
+              </p> 
             </div>
-          
+
+            <div class="col-span-6 lg:col-span-4">
+              
+                <%= form.label :publisher, class: "block text-sm font-medium leading-5 text-gray-700" %>
+                <div class='mt-1 relative'>
+                  <%= form.text_field :publisher,
+                                      class: "form-input rounded-md shadow-sm block w-full py-2 px-3 border border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                                      maxlength: 255, placeholder: 'Lulu Enterprises' %>
+                  <p class="mt-2 text-sm text-gray-500">
+                    If the book was self-published you can leave this field blank
+                  </p>
+                </div>
+              
+            </div>
+
+            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+              <%= form.label :year, "Publication year", class: "block text-sm font-medium leading-5 text-gray-700" %>
+              <%= form.number_field :year, class: "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5", min: -2100, max: "#{Date.today.year}" %>
+            </div>
+  
+            <div class="col-span-6 sm:col-span-3">
+              <%= form.label :num_pages, "Number of pages", class: "block text-sm font-medium leading-5 text-gray-700" %>
+              <%= form.number_field :num_pages, class: "mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5", min: 0 %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -99,74 +133,62 @@
     <div class="mt-6 bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
       <div class="md:grid md:grid-cols-3 md:gap-6">
         <div class="md:col-span-1">
-          <h3 class="text-lg font-medium leading-6 text-gray-900">Notifications</h3>
+          <h3 class="text-lg font-medium leading-6 text-gray-900">Additional details</h3>
           <p class="mt-1 text-sm leading-5 text-gray-500">
-            Decide which communications you'd like to receive and how.
+            This information will help users identify books that are interesting or relevant to them.
           </p>
         </div>
         <div class="mt-5 md:mt-0 md:col-span-2">
-          
-            <fieldset>
-              <legend class="text-base leading-6 font-medium text-gray-900">By Email</legend>
-              <div class="mt-4">
-                <div class="flex items-start">
-                  <div class="flex items-center h-5">
-                    <input id="comments" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                  </div>
-                  <div class="ml-3 text-sm leading-5">
-                    <label for="comments" class="font-medium text-gray-700">Comments</label>
-                    <p class="text-gray-500">Get notified when someones posts a comment on a posting.</p>
-                  </div>
-                </div>
-                <div class="mt-4">
-                  <div class="flex items-start">
-                    <div class="flex items-center h-5">
-                      <input id="candidates" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                    </div>
-                    <div class="ml-3 text-sm leading-5">
-                      <label for="candidates" class="font-medium text-gray-700">Candidates</label>
-                      <p class="text-gray-500">Get notified when a candidate applies for a job.</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="mt-4">
-                  <div class="flex items-start">
-                    <div class="flex items-center h-5">
-                      <input id="offers" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                    </div>
-                    <div class="ml-3 text-sm leading-5">
-                      <label for="offers" class="font-medium text-gray-700">Offers</label>
-                      <p class="text-gray-500">Get notified when a candidate accepts or rejects an offer.</p>
-                    </div>
-                  </div>
-                </div>
+          <div class="grid grid-cols-6 gap-6">
+            <div class="col-span-6">
+              <label for="tags" class="block text-sm font-medium leading-5 text-gray-700">Tags</label>
+              <div class='relative w-full max-w-lg' data-controller='tagify' data-tagify-endpoint='/tags.json'>
+                <input name='basic' placeholder='Physics' data-target='tagify.input'>
               </div>
-            </fieldset>
-            <fieldset class="mt-6">
-              <legend class="text-base leading-6 font-medium text-gray-900">Push Notifications</legend>
-              <p class="text-sm leading-5 text-gray-500">These are delivered via SMS to your mobile phone.</p>
-              <div class="mt-4">
-                <div class="flex items-center">
-                  <input id="push_everything" name="push_notifications" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                  <label for="push_everything" class="ml-3">
-                    <span class="block text-sm leading-5 font-medium text-gray-700">Everything</span>
-                  </label>
-                </div>
-                <div class="mt-4 flex items-center">
-                  <input id="push_email" name="push_notifications" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                  <label for="push_email" class="ml-3">
-                    <span class="block text-sm leading-5 font-medium text-gray-700">Same as email</span>
-                  </label>
-                </div>
-                <div class="mt-4 flex items-center">
-                  <input id="push_nothing" name="push_notifications" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-                  <label for="push_nothing" class="ml-3">
-                    <span class="block text-sm leading-5 font-medium text-gray-700">No push notifications</span>
-                  </label>
-                </div>
+              <p class="mt-2 max-w-lg text-md text-gray-500">
+                Add up to 5 tags to describe what the book is about.
+              </p> 
+            </div>
+          </div>
+
+          <fieldset class="mt-6">
+            <legend class="text-base leading-6 font-medium text-gray-900">Difficulty level</legend>
+            <p class="text-sm leading-5 text-gray-500">This field should clarify the level of sophistication and prior knowledge that the reader needs to have in order to fully comprehend this book. If you can't adequately assign a level to this book, you can leave this field blank.</p>
+            <div class="mt-4">
+              <div class="flex items-center">
+                <input id="push_everything" name="push_notifications" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
+                <label for="push_everything" class="ml-3">
+                  <span class="block text-sm leading-5 font-medium text-gray-700">Introductory</span>
+                  <p class="text-gray-500">Books where little or no prior knowledge is required, or books that present the first principals and concepts of a discipline.</p>
+                </label>
               </div>
-            </fieldset>
-          
+              <div class="mt-4 flex items-center">
+                <input id="push_email" name="push_notifications" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
+                <label for="push_email" class="ml-3">
+                  <span class="block text-sm leading-5 font-medium text-gray-700">Intermediate</span>
+                  <p class="text-gray-500">Books that require prerequisite knowledge or some level of understanding within the discipline.</p>
+                </label>
+              </div>
+              <div class="mt-4 flex items-center">
+                <input id="push_nothing" name="push_notifications" type="radio" class="form-radio h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
+                <label for="push_nothing" class="ml-3">
+                  <span class="block text-sm leading-5 font-medium text-gray-700">Advanced</span>
+                  <p class="text-gray-500">Books for readers who are clearly interested and qualified in the field and have acquired a deep general understanding.</p>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+          <div class="mt-6">
+            <label for="about" class="block text-sm leading-5 font-medium text-gray-700">
+              Details
+            </label>
+            <div class="rounded-md shadow-sm mt-1">
+              <%= form.rich_text_area(:details, class: "form-textarea h-48 block rounded-t-none w-full transition duration-150 ease-in-out focus:outline-none min-h-48 sm:text-sm sm:leading-5") %>
+            </div>
+            <p class="mt-2 text-sm text-gray-500">
+              Give additional details that will help readers understand the scope of the book.
+            </p>
+          </div>
         </div>
       </div>
     </div>
