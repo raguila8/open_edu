@@ -1,0 +1,11 @@
+<!--
+	Select option, manage highlight styles based on mouseenter/mouseleave and keyboard navigation.
+
+	Highlighted: "text-white bg-indigo-600", Not Highlighted: "text-gray-900"
+-->
+<div {{{ attributes }}} role="option" class="{{ tagify.settings.classNames.dropdownItem }} text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9" data-controller='lazy-loader'>
+  <!-- Selected: "font-semibold", Not Selected: "font-normal" -->
+	<span class="font-normal block truncate">
+	  {{ item.name }}
+	</span>
+</div>

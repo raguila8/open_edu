@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :books
   resources :authors, only: [:index]
+  resources :tags, only: [:index]
+
   resources :contact_messages, only: [:create, :new]
   devise_for :users, :skip => [:registrations]                                          
   as :user do

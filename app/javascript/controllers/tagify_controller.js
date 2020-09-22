@@ -5,13 +5,12 @@ export default class extends Controller {
   static targets = [ "input" ]
 
   connect() {
-    // hello
+    // comment
+    
     this.tagify = new Tagify(this.inputTarget, {
       enforceWhitelist: true,
       whitelist: this.inputTarget.value.trim().split(/\s*,\s*/).filter(Boolean), // Array of values.
       dropdown: {
-        position: 'manual',
-        classname: 'tagify__dropdown',
         closeOnSelect: true,
         enabled: 1,
         searchKeys: ['name']  // very important to set by which keys to search for suggesttions when typing
@@ -30,10 +29,8 @@ export default class extends Controller {
     this.tagify.on('input', this.onInput.bind(this))
                .on('dropdown:show', this.showDropdown.bind(this))
                .on('dropdown:hide', this.hideDropdown.bind(this))
-               .on('blur', this.hideDropdown.bind(this))
-               .on('focus', this.showDropdown.bind(this))
 
-    this.renderSuggestionsList()
+//    this.renderSuggestionsList()
   }
 
   onInput(event) {
@@ -97,13 +94,13 @@ export default class extends Controller {
     console.log("tagData keys: " + Object.keys(tagData.value))
 
     console.log(window.Helpers.toHTMLAttributes(tagData.value))
-    let tag = require('templates/tagify/tag.hbs')
+    let tag = require(`templates/tagify/${this.data.get('type')}_tag.hbs`)
     return tag({ tagData: tagData, tagify: this.tagify, attributes: window.Helpers.toHTMLAttributes(tagData) })
   }
 
   dropdownItemTemplate(item) {
     let attributes = this.tagify.getAttributes(item)
-    let dropdownItem = require('templates/tagify/dropdown_item.hbs')
+    let dropdownItem = require(`templates/tagify/dropdown_${this.data.get('type')}_item.hbs`)
     return dropdownItem({item: item, tagify: this.tagify, attributes: attributes})
   }
 
