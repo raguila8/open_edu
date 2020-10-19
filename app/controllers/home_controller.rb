@@ -1,7 +1,11 @@
 class HomeController < ApplicationController
   def landing
-end
-def index
+  end
+
+  def index
+  end
+
+  def explore
   end
 
   def terms

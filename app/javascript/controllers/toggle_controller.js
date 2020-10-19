@@ -69,9 +69,9 @@ export default class extends Controller {
     let toggleController = this.application.getControllerForElementAndIdentifier(
       document.querySelector(this.data.get('remote')),
       "toggle"
-    );
+    )
 
-    toggleController.toggle(event);
+    toggleController.toggle(event)
   }
 
   hideWithKeyboard(event) {

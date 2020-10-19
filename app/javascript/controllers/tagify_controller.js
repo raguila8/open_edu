@@ -5,10 +5,14 @@ export default class extends Controller {
   static targets = [ "input" ]
 
   connect() {
-    // comment
-    
-    this.tagify = new Tagify(this.inputTarget, {
-      enforceWhitelist: true,
+    this.tagifyInit()
+    this.addTagifyEventListeners()
+    // this.renderSuggestionsList()
+  }
+
+  tagifyInit() {
+    let options = {
+      addTagOnBlur: false,
       whitelist: this.inputTarget.value.trim().split(/\s*,\s*/).filter(Boolean), // Array of values.
       dropdown: {
         closeOnSelect: true,
@@ -23,20 +27,40 @@ export default class extends Controller {
         dropdown: this.dropdownTemplate,
         dropdownItem: this.dropdownItemTemplate.bind(this),
       },
-    })
+    }
 
-    console.log(this.tagify.dropdown.position)
+    if (this.data.get('type') == 'person') {
+      options.enforceWhitelist = true
+    } else {
+      options.enforceWhitelist = false
+    }
+
+    this.tagify = new Tagify(this.inputTarget, options)
+  }
+
+  addTagifyEventListeners() {
     this.tagify.on('input', this.onInput.bind(this))
                .on('dropdown:show', this.showDropdown.bind(this))
                .on('dropdown:hide', this.hideDropdown.bind(this))
+               .on('invalid', this.onInvalid.bind(this))
+  }
 
-//    this.renderSuggestionsList()
+  onInvalid(event) {
+    if (this.data.get('type') == 'person' && event.detail.data.__isValid == 'not allowed') {
+      let authorController = this.application.getControllerForElementAndIdentifier(
+        this.element,
+        "author"
+      )
+
+      authorController.render(event)
+
+    } else {
+
+    }
   }
 
   onInput(event) {
     //this.tagify.state.dropdown.visible = false
-    console.log(this.tagify.state.dropdown.visible)
-    console.log('input')
     this.hideDropdown()
     this.tagify.settings.whitelist.length = 0 // reset current whitelist
 
@@ -68,7 +92,6 @@ export default class extends Controller {
   }
 
   showDropdown(event) {
-    console.log('WTF')
     this.tagify.DOM.dropdown.classList.remove('hidden')
 /*
     this.tagify.DOM.dropdown.style.top = null
@@ -78,22 +101,16 @@ export default class extends Controller {
   }
 
   hideDropdown(event) {
-    console.log('hideing')
     this.tagify.DOM.dropdown.classList.add('hidden')
   }
 
   renderSuggestionsList() {
-    console.log("RUNNNUNG")
     this.tagify.dropdown.show.call(this.tagify) // load the list
     this.element.appendChild(this.tagify.DOM.dropdown)
     
   }
 
   tagTemplate(tagData) {
-    console.log("tagData values: " + Object.values(tagData.value))
-    console.log("tagData keys: " + Object.keys(tagData.value))
-
-    console.log(window.Helpers.toHTMLAttributes(tagData.value))
     let tag = require(`templates/tagify/${this.data.get('type')}_tag.hbs`)
     return tag({ tagData: tagData, tagify: this.tagify, attributes: window.Helpers.toHTMLAttributes(tagData) })
   }

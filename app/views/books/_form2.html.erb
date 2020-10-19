@@ -93,13 +93,16 @@
           <div class="grid grid-cols-6 gap-6">
             <div class="col-span-6">
               <label for="authors" class="block text-sm font-medium leading-5 text-gray-700">Authors</label>
-              <div class='relative w-full max-w-lg' data-controller='tagify' data-tagify-endpoint='/authors.json' data-tagify-type='person'>
+              <div class='relative w-full max-w-lg' data-controller='tagify author' data-tagify-endpoint='/authors.json' data-tagify-type='person'>
                 <input name='authors' placeholder='J.K. Rowling' data-target='tagify.input' data-novalidate=true>
+                <p class="mt-2 max-w-lg text-md text-gray-500">
+                  Search for authors by name. Make sure to include all authors
+                  if the book has multiple authors. If the book was published by a group or organization, list the organization's name as the author.
+                </p>
+                <%= render "authors/modal_form" %>
               </div>
-              <p class="mt-2 max-w-lg text-md text-gray-500">
-                Search for authors by name. Make sure to include all authors
-                if the book has multiple authors. If the book was published by a group or organization, list the organization's name as the author.
-              </p> 
+              
+               
             </div>
 
             <div class="col-span-6 lg:col-span-4">
@@ -144,7 +147,7 @@
               <label for="tags" class="block text-sm font-medium leading-5 text-gray-700">Tags</label>
 
               <div class='relative w-full max-w-lg' data-controller='tagify' data-tagify-endpoint='/tags.json' data-tagify-type='text'>
-                <input name='tags' placeholder='Physics' data-target='tagify.input' data-novalidate=true>
+                <input name='tags' placeholder='Physics' data-target='tagify.input' data-novalidate=true pattern="^[A-Za-z\d\s\-\+]*$">
               </div>
               <p class="mt-2 max-w-lg text-md text-gray-500">
                 Add up to 5 tags to describe what the book is about.

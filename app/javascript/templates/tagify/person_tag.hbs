@@ -1,4 +1,4 @@
-<tag title="{{ ternary tagData.title tagData.title tagData.value }}" contenteditable='false' spellcheck='false' tabIndex="-1" class="{{ ternary tagData.class tagData.class ""}} tagify__tag inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium leading-5 bg-white text-gray-900 shadow-sm border border-px border-gray-100 mx-1 focus:outline-none" {{{ attributes }}} data-controller='lazy-loader'>
+<tag title="{{ ternary tagData.title tagData.title tagData.value }}" contenteditable='false' spellcheck='false' tabIndex="-1" class="{{ ternary tagData.class tagData.class ""}} tagify__tag inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium leading-5 bg-white text-gray-900 shadow-sm border border-px border-gray-100 focus:outline-none" {{{ attributes }}} data-controller='lazy-loader'>
   <div class="flex items-center space-x-3">
     <div class='flex-shrink h-6 w-6 rounded-full bg-gray-400 animate-pulse'>
 		  <img data-target='lazy-loader.entry' data-image-src="{{ tagData.avatar }}" alt="" class="opacity-0 transition ease-in duration-150 h-full w-full rounded-full">
